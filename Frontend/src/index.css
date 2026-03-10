@@ -66,3 +66,46 @@ button:focus-visible {
     background-color: #f9f9f9;
   }
 }
+
+/* Dashboard & Custom Styles */
+.dashboard-card {
+  transition: all 0.3s ease;
+  cursor: pointer;
+}
+
+.hover-lift:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 10px 20px rgba(0,0,0,0.1) !important;
+}
+
+.restaurant-card {
+  transition: transform 0.3s ease;
+}
+
+.restaurant-card:hover {
+  transform: scale(1.02);
+}
+
+.card-img-container {
+  height: 200px;
+  overflow: hidden;
+  position: relative;
+}
+
+.restaurant-img {
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.5s ease;
+}
+
+.restaurant-card:hover .restaurant-img {
+  transform: scale(1.1);
+}
+
+.dish-card {
+  transition: border-color 0.3s ease;
+}
+
+.dish-card:hover {
+  border-left: 5px solid #ffc107 !important;
+}

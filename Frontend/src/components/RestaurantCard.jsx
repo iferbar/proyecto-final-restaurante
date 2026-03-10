@@ -33,7 +33,7 @@ function RestaurantCard({ restaurant }) {
           className="mt-auto fw-bold py-2 custom-btn"
           onClick={() => navigate(`/restaurant/${restaurant.restauranteID}`)}
         >
-          Ver Menú Completo
+          Gestionar Restaurante
         </Button>
       </Card.Body>
     </Card>

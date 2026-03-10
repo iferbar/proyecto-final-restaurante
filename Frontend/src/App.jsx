@@ -3,7 +3,8 @@ import { Container } from 'react-bootstrap';
 import NavbarComponent from './components/NavbarComponent';
 import FooterComponent from './components/FooterComponent';
 import Home from './pages/Home';
-import RestaurantMenu from './pages/RestaurantMenu';
+import RestaurantDashboard from './pages/RestaurantDashboard';
+import RestaurantDetails from './pages/RestaurantDetails';
 import './App.css';
 
 function App() {
@@ -14,7 +15,8 @@ function App() {
         <Container>
           <Routes>
             <Route path="/" element={<Home />} />
-            <Route path="/restaurant/:id" element={<RestaurantMenu />} />
+            <Route path="/restaurant/:id" element={<RestaurantDashboard />} />
+            <Route path="/restaurant/:id/:type" element={<RestaurantDetails />} />
           </Routes>
         </Container>
       </main>
