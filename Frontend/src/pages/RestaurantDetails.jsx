@@ -144,24 +144,30 @@ function RestaurantDetails() {
   };
 
   return (
-    <Container className="py-5">
-      <Breadcrumb className="mb-4">
-        <Breadcrumb.Item linkAs={Link} linkProps={{ to: "/" }}>Inicio</Breadcrumb.Item>
-        <Breadcrumb.Item linkAs={Link} linkProps={{ to: `/restaurant/${id}` }}>{restaurant?.restaurante}</Breadcrumb.Item>
-        <Breadcrumb.Item active>{getTitle()}</Breadcrumb.Item>
-      </Breadcrumb>
+    <Container className="py-5" style={{ marginTop: '80px' }}>
+      <div className="reveal">
+        <Breadcrumb className="mb-4 custom-breadcrumb">
+          <Breadcrumb.Item linkAs={Link} linkProps={{ to: "/" }} className="text-uppercase small tracking-wider">Inicio</Breadcrumb.Item>
+          <Breadcrumb.Item linkAs={Link} linkProps={{ to: `/restaurant/${id}` }} className="text-uppercase small tracking-wider">{restaurant?.restaurante}</Breadcrumb.Item>
+          <Breadcrumb.Item active className="text-uppercase small tracking-wider text-gold">{getTitle()}</Breadcrumb.Item>
+        </Breadcrumb>
 
-      <div className="d-flex justify-content-between align-items-center mb-4">
-        <div>
-          <h2 className="fw-bold mb-0">{getTitle()}</h2>
-          <p className="text-muted">{restaurant?.restaurante} - {restaurant?.barrio}</p>
+        <div className="d-flex flex-column flex-md-row justify-content-between align-items-start align-items-md-center mb-5 gap-4">
+          <div>
+            <h1 className="display-4 font-display mb-1">{getTitle()}</h1>
+            <p className="text-muted lead mb-0">
+              <span className="text-gold fw-600">{restaurant?.restaurante}</span> &mdash; {restaurant?.barrio}
+            </p>
+          </div>
+          <Button as={Link} to={`/restaurant/${id}`} className="btn-premium">
+            &larr; Volver al Panel
+          </Button>
         </div>
-        <Button as={Link} to={`/restaurant/${id}`} variant="outline-dark">
-          Volver al Dashboard
-        </Button>
-      </div>
 
-      {renderTable()}
+        <div className="bg-white p-2 p-md-4 rounded-4 shadow-sm overflow-hidden mb-5">
+          {renderTable()}
+        </div>
+      </div>
     </Container>
   );
 }

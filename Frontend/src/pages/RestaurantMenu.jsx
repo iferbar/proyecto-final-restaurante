@@ -62,41 +62,59 @@ function RestaurantMenu() {
   }
 
   return (
-    <div>
-      <div className="restaurant-header mb-5 p-5 rounded-4 text-white shadow" 
+    <div className="reveal">
+      <div className="restaurant-header mb-5 p-5 text-white position-relative overflow-hidden" 
            style={{ 
-             background: `linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url(https://images.unsplash.com/photo-1514362545857-3bc16c4c7d1b?auto=format&fit=crop&q=80&w=1600&h=400) center/cover` 
+             background: `linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url(https://images.unsplash.com/photo-1514362545857-3bc16c4c7d1b?auto=format&fit=crop&q=80&w=2000) center/cover`,
+             minHeight: '400px',
+             display: 'flex',
+             flexDirection: 'column',
+             justifyContent: 'center',
+             alignItems: 'center',
+             marginTop: '60px'
            }}>
-        <Button as={Link} to="/" variant="link" className="text-white p-0 mb-3 text-decoration-none">
-          &larr; Volver a Restaurantes
-        </Button>
-        <h1 className="display-3 fw-bold">{restaurant.restaurante}</h1>
-        <p className="lead"><Badge bg="warning" text="dark" className="fs-6 px-3 py-2">{restaurant.barrio}</Badge></p>
+        <div className="text-center">
+          <Button as={Link} to="/" variant="link" className="text-white p-0 mb-4 text-decoration-none text-uppercase tracking-widest small opacity-75 hover-opacity-100 transition-all">
+            &larr; Ver Todos los Restaurantes
+          </Button>
+          <h1 className="display-1 font-display mb-3">{restaurant.restaurante}</h1>
+          <div className="d-flex align-items-center justify-content-center gap-3">
+             <div style={{ height: '1px', width: '40px', background: 'var(--color-secondary)' }}></div>
+             <span className="text-uppercase tracking-widest text-gold fw-600">{restaurant.barrio}</span>
+             <div style={{ height: '1px', width: '40px', background: 'var(--color-secondary)' }}></div>
+          </div>
+        </div>
       </div>
 
-      <h2 className="mb-4 fw-bold">Nuestra Carta</h2>
-      
-      {dishes.length === 0 ? (
-        <p className="text-muted">Próximamente estaremos añadiendo platos a este menú.</p>
-      ) : (
-        <Row className="g-4">
-          {dishes.map((dish) => (
-            <Col key={dish.platoID} xs={12} lg={6}>
-              <Card className="h-100 border-0 shadow-sm dish-card">
-                <Card.Body className="d-flex align-items-center p-4">
+      <Container className="pb-5">
+        <div className="text-center mb-5">
+          <h2 className="display-4 font-display mb-2">Nuestra Carta</h2>
+          <p className="text-muted italic" style={{ fontFamily: 'var(--font-display)' }}>Selección exclusiva de especialidades de la casa</p>
+        </div>
+        
+        {dishes.length === 0 ? (
+          <div className="text-center py-5 opacity-50">
+            <p className="font-display h4 italic">Próximamente estaremos añadiendo platos a este menú.</p>
+          </div>
+        ) : (
+          <Row className="g-5">
+            {dishes.map((dish) => (
+              <Col key={dish.platoID} xs={12} lg={6}>
+                <div className="dish-item d-flex align-items-start gap-3 p-3 transition-all hover-translate-y" style={{ borderBottom: '1px solid #eee' }}>
                   <div className="flex-grow-1">
-                    <div className="d-flex justify-content-between align-items-start mb-2">
-                      <h4 className="fw-bold mb-0">{dish.plato}</h4>
-                      <span className="fw-bold fs-5 text-warning">{dish.precio}€</span>
+                    <div className="d-flex justify-content-between align-items-baseline mb-2">
+                      <h4 className="font-display h4 mb-0">{dish.plato}</h4>
+                      <div className="flex-grow-1 mx-3 mb-1" style={{ borderBottom: '1px dotted #ccc' }}></div>
+                      <span className="font-display h5 mb-0 text-gold">{dish.precio}€</span>
                     </div>
-                    {dish.descripcion && <p className="text-muted small mb-0">{dish.descripcion}</p>}
+                    {dish.descripcion && <p className="text-muted small mb-0 pe-5" style={{ fontFamily: 'var(--font-body)', fontStyle: 'italic' }}>{dish.descripcion}</p>}
                   </div>
-                </Card.Body>
-              </Card>
-            </Col>
-          ))}
-        </Row>
-      )}
+                </div>
+              </Col>
+            ))}
+          </Row>
+        )}
+      </Container>
     </div>
   );
 }

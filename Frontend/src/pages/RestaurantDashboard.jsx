@@ -44,10 +44,10 @@ function RestaurantDashboard() {
   const categories = [
     {
       title: 'Carta de Platos',
-      description: 'Gestiona el menú, precios y descripciones de los platos.',
-      icon: <FaUtensils size={40} className="mb-3 text-warning" />,
-      link: `/restaurant/${id}/dishes`,
-      color: 'warning'
+      description: 'Consulta nuestro menú exclusivo con las mejores especialidades de la casa.',
+      icon: <FaUtensils size={40} className="mb-3" />,
+      link: `/restaurant/${id}/menu`,
+      color: 'gold'
     },
     {
       title: 'Pedidos',
@@ -66,41 +66,43 @@ function RestaurantDashboard() {
   ];
 
   return (
-    <Container className="py-5">
-      <div className="mb-5 text-center">
-        <Badge bg="warning" text="dark" className="mb-2 px-3 py-2 fs-6">Panel de Gestión</Badge>
-        <h1 className="display-4 fw-bold">{restaurant.restaurante}</h1>
-        <p className="lead text-muted">{restaurant.barrio}</p>
-      </div>
+    <Container className="py-5" style={{ marginTop: '80px' }}>
+      <div className="reveal">
+        <div className="mb-5 text-center px-3">
+          <Badge bg="white" text="dark" className="mb-3 px-4 py-2 text-uppercase tracking-widest border shadow-sm small">Panel Admin</Badge>
+          <h1 className="display-3 font-display mb-2">{restaurant.restaurante}</h1>
+          <div className="mx-auto" style={{ width: '50px', height: '2px', background: 'var(--color-secondary)' }}></div>
+          <p className="mt-3 text-muted lead tracking-wider text-uppercase small">{restaurant.barrio}</p>
+        </div>
 
-      <Row className="g-4">
-        {categories.map((cat, index) => (
-          <Col key={index} xs={12} md={4}>
-            <Card className="h-100 border-0 shadow-sm text-center p-4 dashboard-card hover-lift">
-              <Card.Body className="d-flex flex-column align-items-center">
-                {cat.icon}
-                <Card.Title className="fw-bold h3 mb-3">{cat.title}</Card.Title>
-                <Card.Text className="text-muted mb-4">
+        <Row className="g-5 px-xl-5">
+          {categories.map((cat, index) => (
+            <Col key={index} xs={12} md={4}>
+              <div className="bg-white h-100 p-5 rounded-4 shadow-sm text-center transition-all hover-translate-y d-flex flex-column align-items-center">
+                <div className={`p-4 rounded-circle mb-4 bg-light text-${cat.color}`} style={{ width: '100px', height: '100px', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+                  {cat.icon}
+                </div>
+                <h3 className="font-display h3 mb-3">{cat.title}</h3>
+                <p className="text-muted mb-4 small flex-grow-1" style={{ fontFamily: 'var(--font-body)', lineHeight: '1.7' }}>
                   {cat.description}
-                </Card.Text>
+                </p>
                 <Button 
                   as={Link} 
                   to={cat.link} 
-                  variant={`outline-${cat.color}`} 
-                  className="mt-auto fw-bold px-4 py-2"
+                  className="btn-premium w-100"
                 >
-                  Acceder
+                  Entrar
                 </Button>
-              </Card.Body>
-            </Card>
-          </Col>
-        ))}
-      </Row>
+              </div>
+            </Col>
+          ))}
+        </Row>
 
-      <div className="mt-5 text-center">
-        <Button as={Link} to="/" variant="link" className="text-muted text-decoration-none">
-          &larr; Volver a la lista de restaurantes
-        </Button>
+        <div className="mt-5 text-center">
+          <Button as={Link} to="/" variant="link" className="text-dark text-decoration-none text-uppercase tracking-widest small opacity-50 hover-opacity-100 transition-all">
+            &larr; Volver al Portal de Restaurantes
+          </Button>
+        </div>
       </div>
     </Container>
   );

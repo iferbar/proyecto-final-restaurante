@@ -5,6 +5,7 @@ import FooterComponent from './components/FooterComponent';
 import Home from './pages/Home';
 import RestaurantDashboard from './pages/RestaurantDashboard';
 import RestaurantDetails from './pages/RestaurantDetails';
+import RestaurantMenu from './pages/RestaurantMenu';
 import './App.css';
 
 function App() {
@@ -16,6 +17,7 @@ function App() {
           <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/restaurant/:id" element={<RestaurantDashboard />} />
+            <Route path="/restaurant/:id/menu" element={<RestaurantMenu />} />
             <Route path="/restaurant/:id/:type" element={<RestaurantDetails />} />
           </Routes>
         </Container>

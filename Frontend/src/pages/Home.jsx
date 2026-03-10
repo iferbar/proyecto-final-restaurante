@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { Row, Col, Spinner, Alert } from 'react-bootstrap';
+import { Row, Col, Spinner, Alert, Container } from 'react-bootstrap';
 import RestaurantCard from '../components/RestaurantCard';
 
 function Home() {
@@ -41,16 +41,39 @@ function Home() {
   }
 
   return (
-    <div>
-      <h1 className="display-4 fw-bold mb-4 text-center">Explora Restaurantes</h1>
-      <p className="lead text-center mb-5 text-muted">Descubre experiencias culinarias únicas en tu barrio.</p>
-      <Row className="g-4">
-        {restaurants.map((restaurant) => (
-          <Col key={restaurant.restauranteID} xs={12} md={6} lg={4}>
-            <RestaurantCard restaurant={restaurant} />
-          </Col>
-        ))}
-      </Row> 
+    <div className="reveal">
+      {/* Hero Section */}
+      <div className="hero-section text-center py-5 mb-5 rounded-4 shadow-sm" style={{ 
+        background: 'linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), url("https://images.unsplash.com/photo-1514362545857-3bc16c4c7d1b?auto=format&fit=crop&q=80&w=2000")',
+        backgroundSize: 'cover',
+        backgroundPosition: 'center',
+        padding: '120px 20px',
+        color: 'white',
+        marginTop: '80px'
+      }}>
+        <h1 className="display-2 font-display text-white mb-3">Saborea la <span className="text-gold">Excelencia</span></h1>
+        <p className="lead fs-4 opacity-90 mb-4" style={{ fontFamily: 'var(--font-body)' }}>
+          Descubre los rincones más exclusivos de la gastronomía local.
+        </p>
+        <button className="btn-premium border-white text-white" onClick={() => window.scrollTo({ top: 800, behavior: 'smooth' })}>
+          Explorar Ahora
+        </button>
+      </div>
+
+      <Container>
+        <div className="text-center mb-5">
+          <h2 className="display-5 font-display mb-3">Restaurantes Destacados</h2>
+          <div className="mx-auto" style={{ width: '60px', height: '3px', background: 'var(--color-secondary)' }}></div>
+        </div>
+        
+        <Row className="g-5">
+          {restaurants.map((restaurant) => (
+            <Col key={restaurant.restauranteID} xs={12} md={6} lg={4}>
+              <RestaurantCard restaurant={restaurant} />
+            </Col>
+          ))}
+        </Row> 
+      </Container>
     </div>
   );
 }
