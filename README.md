@@ -11,6 +11,7 @@ cd ../Frontend && npm install && npm run dev
 - **Frontend**: [http://localhost:5173](http://localhost:5173) (Vite)
 - **API Backend**: [http://localhost:4000](http://localhost:4000)
 - **phpMyAdmin**: [http://localhost:9091](http://localhost:9091)
+- **Servidor Desplegado**: [https://iferbar.github.io/proyecto-final-restaurante/](https://iferbar.github.io/proyecto-final-restaurante/)
 
 ### 📋 Requisitos
 - Docker & Docker Compose
