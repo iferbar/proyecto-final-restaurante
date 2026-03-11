@@ -34,6 +34,27 @@ Una vez el proyecto esté subido a GitHub y desplegado (por ejemplo en GitHub Pa
 - Cada vez que necesite datos, llamará a: `http://51.210.22.156:4000/restaurants`.
 - ¡Magia! Verás los datos reales del servidor externo.
 
+### 6. Despliegue automático en GitHub Pages
+He configurado el proyecto para que puedas desplegar con un solo comando.
+
+1. **Guardar cambios**: 
+   ```bash
+   git add .
+   git commit -m "Configuración de gh-pages"
+   git push origin main
+   ```
+2. **Desplegar**: 
+   En la carpeta `Frontend/`, ejecuta:
+   ```bash
+   npm run deploy
+   ```
+   *Este comando ejecutará automáticamente el build y subirá los archivos a la rama `gh-pages` de tu repositorio.*
+
+3. **Activar en GitHub**:
+   - Ve a tu repositorio en GitHub.
+   - **Settings** > **Pages**.
+   - Asegúrate de que **Source** es "Deploy from a branch" y la rama es `gh-pages`.
+
 ---
 > [!TIP]
 > **Importante**: No borres los archivos `.env`. Si los borras, Vite no sabrá a dónde apuntar y los fetch fallarán.
