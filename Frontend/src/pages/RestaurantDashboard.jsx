@@ -19,7 +19,8 @@ function RestaurantDashboard() {
     const [error, setError] = useState(null);
 
     useEffect(() => {
-        fetch(`http://localhost:4000/restaurants`)
+        const API_URL = import.meta.env.VITE_API_URL;
+        fetch(`${API_URL}/restaurants`)
             .then((res) => {
                 if (!res.ok)
                     throw new Error("Error al conectar con el servidor");

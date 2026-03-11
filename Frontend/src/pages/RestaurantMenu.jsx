@@ -20,10 +20,11 @@ function RestaurantMenu() {
 
     useEffect(() => {
         const fetchData = async () => {
+            const API_URL = import.meta.env.VITE_API_URL;
             try {
                 const [resResp, dishesResp] = await Promise.all([
-                    fetch(`http://localhost:4000/restaurants`),
-                    fetch(`http://localhost:4000/dishes`),
+                    fetch(`${API_URL}/restaurants`),
+                    fetch(`${API_URL}/dishes`),
                 ]);
 
                 if (!resResp.ok || !dishesResp.ok)

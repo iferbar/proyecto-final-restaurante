@@ -19,11 +19,12 @@ function RestaurantDetails() {
 
     useEffect(() => {
         const fetchData = async () => {
+            const API_URL = import.meta.env.VITE_API_URL;
             setLoading(true);
             try {
                 // Fetch restaurant info
                 const resResp = await fetch(
-                    `http://localhost:4000/restaurants`,
+                    `${API_URL}/restaurants`,
                 );
                 const restaurants = await resResp.json();
                 const current = restaurants.find(
@@ -32,7 +33,7 @@ function RestaurantDetails() {
                 setRestaurant(current);
 
                 // Fetch type data (dishes, orders, or customers)
-                const dataResp = await fetch(`http://localhost:4000/${type}`);
+                const dataResp = await fetch(`${API_URL}/${type}`);
                 if (!dataResp.ok) throw new Error(`Error al cargar ${type}`);
                 const allData = await dataResp.json();
 
