@@ -153,24 +153,6 @@ h4,
     transform: translateY(-2px);
 }
 
-.card-img-container {
-    height: 240px;
-    overflow: hidden;
-    position: relative;
-    z-index: 1;
-}
-
-.restaurant-img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    transition: transform 1.2s cubic-bezier(0.165, 0.84, 0.44, 1);
-}
-
-.restaurant-card:hover .restaurant-img {
-    transform: scale(1.1);
-}
-
 /* Secondary Buttons Fix */
 .btn-outline-dark {
     border-color: #ddd !important;
