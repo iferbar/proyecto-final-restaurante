@@ -47,6 +47,30 @@ function RestaurantDetails() {
                     );
                 }
 
+                if (type === "orders") {
+                    const custResp = await fetch(`${API_URL}/customers`);
+                    const customersData = custResp.ok ? await custResp.json() : [];
+
+                    filtered = await Promise.all(
+                        filtered.map(async (order) => {
+                            const customerInfo = customersData.find(
+                                (c) => c.clienteID === order.clienteID
+                            );
+
+                            const dishesResp = await fetch(
+                                `${API_URL}/order/${order.pedidoID}/dishes`
+                            );
+                            const dishesInfo = dishesResp.ok ? await dishesResp.json() : [];
+
+                            return {
+                                ...order,
+                                customer: customerInfo,
+                                dishes: dishesInfo,
+                            };
+                        })
+                    );
+                }
+
                 setData(filtered);
                 setLoading(false);
             } catch (err) {
@@ -143,16 +167,49 @@ function RestaurantDetails() {
                         <thead className="bg-dark text-white">
                             <tr>
                                 <th>Pedido ID</th>
-                                <th>Cliente ID</th>
+                                <th>Cliente</th>
+                                <th>Platos</th>
+                                <th>Total</th>
                                 <th>Fecha</th>
                             </tr>
                         </thead>
                         <tbody>
                             {data.map((order) => (
-                                <tr key={order.pedidoID}>
-                                    <td>#{order.pedidoID}</td>
-                                    <td>{order.clienteID}</td>
+                                <tr key={order.pedidoID} className="align-middle">
+                                    <td className="fw-bold text-nowrap">#{order.pedidoID}</td>
                                     <td>
+                                        {order.customer ? (
+                                            <>
+                                                <div className="fw-bold">{order.customer.nombre} {order.customer.apellido1} {order.customer.apellido2}</div>
+                                                <div className="text-muted small">ID: {order.clienteID}</div>
+                                            </>
+                                        ) : (
+                                            order.clienteID
+                                        )}
+                                    </td>
+                                    <td>
+                                        {order.dishes && order.dishes.length > 0 ? (
+                                            <ul className="list-unstyled mb-0">
+                                                {order.dishes.map((dish, i) => (
+                                                    <li key={i} className="small">
+                                                        <Badge bg="light" text="dark" className="me-2 mb-1 border">
+                                                            {dish.cantidad}x
+                                                        </Badge>
+                                                        {dish.plato}
+                                                    </li>
+                                                ))}
+                                            </ul>
+                                        ) : (
+                                            <span className="text-muted small">Sin platos</span>
+                                        )}
+                                    </td>
+                                    
+                                    <td className="fw-bold text-success">
+                                        {order.dishes && order.dishes.length > 0
+                                            ? order.dishes.reduce((total, dish) => total + (parseFloat(dish.precio) * parseInt(dish.cantidad, 10)), 0).toFixed(2)
+                                            : "0.00"}€
+                                    </td>
+                                    <td className="text-nowrap">
                                         {new Date(
                                             order.fecha,
                                         ).toLocaleDateString()}
